@@ -1,6 +1,8 @@
 import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
-import { GlobalStyle } from './styles/global'
+import { GlobalStyle } from './styles/global';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal'
 import { useState } from 'react';
 import {NewTransactionModal} from './components/NewTransactionModal'
@@ -20,6 +22,7 @@ export function App() {
 
   return (
     <TransacticionsProvider>
+      <ToastContainer />
       <Header  onOpenNewTransactionModal={hadleOpenNewTransactionModal}/>
       <Dashboard />
       <NewTransactionModal

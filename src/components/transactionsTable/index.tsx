@@ -1,9 +1,17 @@
 import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from './styles'
+import DeleteImg from '../../assets/delete.svg'
+import EditImg from '../../assets/edit.svg'
+import { api } from "../../services/api";
 
 
 export function TransactionsTable() {
-    const {transactions} = useTransactions();
+    const { transactions } = useTransactions();
+
+    async function handleCreateNewTransaction(id: Number) {
+        await api.delete(`/budget/delete/${id}`)
+    }
+
     return (
         <Container>
             <table>
@@ -13,7 +21,8 @@ export function TransactionsTable() {
                         <th>client</th>
                         <th>seller</th>
                         <th>description</th>
-                        <th>budget_amount</th>
+                        <th>Data de criação</th>
+                        <th>Valor do orçamento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,11 +31,25 @@ export function TransactionsTable() {
                             <td>{transaction.id}</td>
                             <td>{transaction.client}</td>
                             <td>
-                            {transaction.seller}
-                           </td>
+                                {transaction.seller}
+                            </td>
                             <td>{transaction.description}</td>
+                            <td>{
+                                new Intl.DateTimeFormat('pt-BR').format(
+                                    new Date(transaction.created_at)
+                                )}
+                            </td>
                             <td>
-                            {transaction.budget_amount}
+                                {new Intl.NumberFormat('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL',
+                                }).format(transaction.budget_amount)}
+                            </td>
+                            <td>
+
+                                <div className="optionsIncons">
+                                    <img src={DeleteImg} alt="Deletar orçamento" onClick={() => handleCreateNewTransaction(transaction.id)}></img>
+                                </div>
                             </td>
                         </tr>
                     ))}

@@ -7,9 +7,9 @@ export const GlobalStyle = createGlobalStyle`
         --background: #f8f2f5;
 
         --red: #e52e40;
-        --blue: #5429cc;
+        --blue: #2D5051;
         --green: #33cc95;
-        --blue-light: #6933ff;
+        --blue-light:#2E706C;
 
         --text-title: #363f5f;
         --text-body: #969cb3;
@@ -84,5 +84,12 @@ export const GlobalStyle = createGlobalStyle`
         &:hover{
             filter: brightness(0.8);
         }
+    }
+
+    @media (max-width: 750px){
+        .react-modal-overlay{
+      margin: auto;
+    }
+   
     }
 `;

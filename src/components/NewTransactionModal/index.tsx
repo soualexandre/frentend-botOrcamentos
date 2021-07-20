@@ -1,7 +1,9 @@
 import Modal from 'react-modal'
 import { FormEvent, useState } from 'react'
-import { Container, TransactionsTypeContainer, RadioBox } from './styles'
+import { Container } from './styles'
 import closeImg from '../../assets/close.svg'
+import { toast } from 'react-toastify';
+
 import { useTransactions } from '../../hooks/useTransactions';
 
 interface NewTransactionModalProps {
@@ -32,6 +34,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
       setDescription('');
       setValueBudget(0);
       onRequestClose();
+      toast.success("Orçamento criado com sucess")
     }
     return (
         <Modal

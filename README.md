@@ -4,7 +4,7 @@
 
 ## Backend
 
-[Link do backend ReactJS](https://github.com/soualexandre/backend-teste-bot.git)
+[Link do backend Laravel (https://github.com/soualexandre/backend-teste-bot.git)
 
 ## Tech Stack
 

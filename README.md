@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Imagem" src="./whatch.png" width="80%">
+  <img alt="Imagem" src="./orcamento.gif" width="80%">
 </p>
 
 ## Backend

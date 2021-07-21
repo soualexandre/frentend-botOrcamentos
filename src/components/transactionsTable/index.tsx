@@ -4,11 +4,21 @@ import DeleteImg from '../../assets/delete.svg'
 import viewImg from '../../assets/view.svg'
 import EditImg from '../../assets/edit.svg'
 
-export function TransactionsTable() {
-    const { transactions, deleteTransaction } = useTransactions();
+
+interface TableProps{
+    onOpenUpdateTransactionModal: () => void;
+}
+
+export function TransactionsTable({onOpenUpdateTransactionModal} :TableProps ) {
+    const { transactions, deleteTransaction,GetUpdateTransaction } = useTransactions();
 
     async function handleCreateNewTransaction(id: number) {
         deleteTransaction(id);
+    }
+ 
+    async function handleUpdateTransaction(id: number) {
+        GetUpdateTransaction(id);
+        onOpenUpdateTransactionModal();
     }
  
 
@@ -49,7 +59,7 @@ export function TransactionsTable() {
 
                                 <div className="optionsIncons">
                                     <img src={viewImg} alt="Deletar orçamento" onClick={() => handleCreateNewTransaction(transaction.id)}></img>
-                                    <img src={EditImg} alt="Deletar orçamento" onClick={() => handleCreateNewTransaction(transaction.id)}></img>
+                                    <img src={EditImg} alt="Editar orçamento" onClick={() => handleUpdateTransaction(transaction.id)}></img>
                                     <img src={DeleteImg} alt="Deletar orçamento" onClick={() => handleCreateNewTransaction(transaction.id)}></img>
                                 </div>
                             </td>

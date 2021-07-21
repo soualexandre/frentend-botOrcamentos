@@ -11,10 +11,12 @@ interface Transaction {
     created_at: string;
     budget_amount: number;
 }
+
 interface TransactionsContextData{
     transactions: Transaction[];
     createTransaction: (transaction:TransactionInput) => Promise<void>;
     deleteTransaction: (productId: number) => void;
+    GetUpdateTransaction: (productId: number) => void;
 }
 
 type TransactionInput = Omit<Transaction, 'id' | 'created_at'>;
@@ -35,7 +37,6 @@ export function TransacticionsProvider({children} : TrabsactionsProviderProps){
       const response = await api.post('/budget/create', {
         ...transactionInput,
     })
-    console.log(response.data)
     setTransactions([
         response.data,
         ...transactions
@@ -47,6 +48,15 @@ export function TransacticionsProvider({children} : TrabsactionsProviderProps){
         setTransactions(response.data)
         toast.success('Orçamento removido com sucesso');
     }
+    async function GetUpdateTransaction(productId: number){
+        const updatetransaction = transactions.find(updateTransactions => updateTransactions.id === productId)
+        setTransactions(
+            [
+                updatetransaction!
+            ]
+        )
+        console.log(transactions)
+    }
 
     useEffect(() => {
         api.get('budget')
@@ -54,7 +64,7 @@ export function TransacticionsProvider({children} : TrabsactionsProviderProps){
     },[])
 
     return ( 
-        <TransactionsContext.Provider value={{transactions, createTransaction, deleteTransaction}}>
+        <TransactionsContext.Provider value={{transactions, createTransaction, deleteTransaction, GetUpdateTransaction}}>
             {children}
         </TransactionsContext.Provider>
     );

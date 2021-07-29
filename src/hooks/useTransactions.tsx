@@ -34,7 +34,7 @@ export function TransacticionsProvider({children} : TrabsactionsProviderProps){
     
 
    async function createTransaction(transactionInput: TransactionInput){
-      const response = await api.post('/budget/create', {
+      const response = await api.post('/budget/store/', {
         ...transactionInput,
     })
     setTransactions([
